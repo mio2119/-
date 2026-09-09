@@ -1,0 +1,42 @@
+{
+  "started_unix": 1788965186.7598538,
+  "total_seconds": 8.148211002349854,
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "logical_processors": 20,
+  "package_versions": {
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "openpyxl": "3.1.5",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.1"
+  },
+  "figures_only": true,
+  "bootstrap_replicates": 120,
+  "stages": [
+    {
+      "script": "common_figures.py",
+      "elapsed_seconds": 2.165784299999359,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "script": "result_figures.py",
+      "elapsed_seconds": 4.565309399997204,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "script": "verify_project.py",
+      "elapsed_seconds": 1.4045533999997133,
+      "exit_code": 0,
+      "stdout": "{\n  \"source_sha256\": \"four original workbooks unchanged\",\n  \"maximum_prediction_discrepancies_pp\": {\n    \"sic_1_two_beam\": 3.552713678800501e-15,\n    \"sic_1_airy\": 3.552713678800501e-15,\n    \"sic_2_two_beam\": 3.552713678800501e-15,\n    \"sic_2_airy\": 3.552713678800501e-15,\n    \"si_3_main\": 7.105427357601002e-15,\n    \"si_3_two_ray\": 7.105427357601002e-15,\n    \"si_4_main\": 7.105427357601002e-15,\n    \"si_4_two_ray\": 1.4210854715202004e-14\n  },\n  \"physical_limit_checks\": {\n    \"explicit_80_ray_field_max_error\": 6.661338147750939e-16,\n    \"zero_contrast_thickness_invariance_error_pp\": 0.0,\n    \"synthetic_max_relative_parameter_error\": 1.8041124150158794e-15,\n    \"synthetic_true_parameters\": [\n      3.42,\n      3850.0,\n      380.0,\n      0.1\n    ],\n    \"synthetic_recovered_parameters\": [\n      3.4199999999999995,\n      3849.9999999999995,\n      380.0,\n      0.09999999999999983\n    ]\n  },\n  \"latex\": {\n    \"source_files\": 27,\n    \"figures_referenced\": 15,\n    \"tables\": 18,\n    \"cited_references\": 15,\n    \"uncited_bibliography\": [\n      \"StornPrice1997\"\n    ],\n    \"unique_labels\": 73,\n    \"cross_references\": 26,\n    \"source_checks\": \"passed\",\n    \"compile_status\": \"not_verified_by_this_static_check\"\n  },\n  \"note\": \"Numerical/source validation does not establish full page-layout quality.\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "creates_pdf": false,
+  "creates_word": false
+}

@@ -1,0 +1,31 @@
+\section{复现文件及计算口径}
+\begin{table}[htbp]\centering
+\caption{主要复现文件}\label{tab:files}
+\begin{tabularx}{\textwidth}{lL}
+\toprule 文件 & 作用\\\midrule
+\texttt{run\_all.py} & 顺序运行数据核对、两种材料求解、绘图与核验\\
+\texttt{code/data\_preprocess.py} & 从四个原始工作簿重建CSV及校验记录\\
+\texttt{code/sic\_analysis.py} & 碳化硅两束及高阶形状检验、块验证与重抽样\\
+\texttt{code/silicon\_analysis.py} & 硅两束和多束反演、灵敏度与数值极限检查\\
+\texttt{code/joint\_sensitivity.py} & 在原主模型下运行三因素九组联合情景\\
+\texttt{code/common\_figures.py} & 原始光谱和自行绘制的光路及流程示意\\
+\texttt{code/result\_figures.py} & 从计算输出生成结果图及数据表\\
+\texttt{code/verify\_project.py} & 复算预测值，核对源码引用与文件完整性\\
+\texttt{results/} & 参数、逐点预测、重抽样样本和验证记录\\
+\texttt{data/} & 原始附件与无损数值转录\\
+\bottomrule
+\end{tabularx}\end{table}
+表\ref{tab:files}中的代码使用相对路径，原始工作簿保持不变。默认每种材料运行120次块残差重抽样，脚本输出完整参数，正文只保留便于解释的有效数字。图表由CSV、JSON或NPZ结果生成，图中没有用手工构造的曲线替代实测拟合。软件版本、运行环境及各阶段用时另见计算日志。
+
+\section{双角相位模型的关键实现}
+下列函数构造碳化硅模型的设计矩阵；完整的多起点拟合、线性变量分离、块验证及重抽样实现保存在对应源文件中。代码中的\texttt{q}是正文有效形状参数$\xi$。
+\lstinputlisting[language=Python,basicstyle=\ttfamily\footnotesize,frame=single,
+  firstline=60,lastline=69]{code/sic_analysis.py}
+
+\section{硅光谱的多次反射计算}
+以下函数采用相同光学参数计算两束截断和无限往返模型，先叠加电场，再对两偏振的反射强度求平均。它是两种模型公平比较的基础，完整程序同时保存逐点预测，便于独立核验。
+\lstinputlisting[language=Python,basicstyle=\ttfamily\footnotesize,frame=single,
+  firstline=56,lastline=73]{code/silicon_analysis.py}
+
+\section{结果解释与进一步测量需求}
+本文没有厚度真值，不把模型残差当作几何厚度误差；没有独立折射率测量，不将文献色散当作本晶圆已经标定的光学常数；没有仪器相干性参数，不仅依据非正弦条纹就声称逐项证实全部多光束条件。正文给出的分角厚度、有效波段范围与折射率扰动结果共同构成当前数据支持的解释边界。

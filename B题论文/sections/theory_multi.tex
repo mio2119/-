@@ -1,0 +1,182 @@
+\section{问题三：多光束干涉的条件、模型及误差机制}
+\label{sec:multi-theory}
+
+\subsection{有吸收情形的 Fresnel 系数与级数求和}
+多次反射需要保留各阶光束的复振幅，而不能先将各阶反射强度相加。
+采用时间因子 $\exp(-\mathrm{i}\omega t)$，令各层复折射率
+$N_j=n_j+\mathrm{i}\kappa_j$，并定义
+\begin{equation}
+ w_j=\sqrt{N_j^2-n_0^2\sin^2\theta},\qquad
+ \operatorname{Im}w_j\geq0.
+ \label{eq:complex-normal-index}
+\end{equation}
+取向前传播且被动衰减的平方根分支；在透明介质中同时取 $\operatorname{Re}w_j>0$。
+为统一两种偏振的符号，以下 $r,t$ 均按切向电场定义。省去各层相同的真空常数后，导纳为
+\begin{equation}
+ Y_j^{(s)}=w_j,\qquad Y_j^{(p)}=\frac{N_j^2}{w_j},\qquad
+ r_{ij}^{(u)}=\frac{Y_i^{(u)}-Y_j^{(u)}}{Y_i^{(u)}+Y_j^{(u)}},\qquad
+ t_{ij}^{(u)}=\frac{2Y_i^{(u)}}{Y_i^{(u)}+Y_j^{(u)}},\quad u\in\{s,p\}.
+ \label{eq:admittance-fresnel}
+\end{equation}
+某些教材对 $p$ 偏振使用随传播方向变化的单位矢量，因而反射振幅多一个符号；
+只要全程使用一致约定，计算的 $|r|^2$ 不变\cite{Byrnes2016}。
+
+设单次穿层相位为 $\delta=2\pi\sigma d_cw_1$，完整往返传播因子为
+\begin{equation}
+ z=\exp(2\mathrm{i}\delta),\qquad
+ |z|=\exp[-4\pi\sigma d_c\operatorname{Im}w_1].
+ \label{eq:roundtrip-propagation}
+\end{equation}
+界面 $1/2$ 的第一次反射光出射后，每增加一次层内往返，振幅乘以
+$\rho=r_{10}r_{12}z$。在 $|\rho|<1$ 时求几何级数，得到
+\begin{align}
+ r^{(\infty)}
+ &=r_{01}+t_{01}t_{10}r_{12}z
+ \sum_{m=0}^{\infty}(r_{10}r_{12}z)^m\\
+ &=r_{01}+\frac{t_{01}t_{10}r_{12}z}{1-r_{10}r_{12}z}
+ =\frac{r_{01}+r_{12}z}{1+r_{01}r_{12}z}.
+ \label{eq:airy-complex}
+\end{align}
+最后一步利用 $r_{10}=-r_{01}$ 及 $t_{01}t_{10}=1-r_{01}^2$。
+该式是单层 Airy 复振幅模型，也与三介质传输矩阵结果一致。
+若仪器收集无偏振且两种偏振权重相同，则
+\begin{equation}
+ R_{\mathrm{Airy}}=\frac{|r^{(\infty,s)}|^2+|r^{(\infty,p)}|^2}{2}.
+ \label{eq:unpolarized-airy}
+\end{equation}
+未知偏振权重可成为系统误差来源，不能从两个小入射角轻易反演。
+
+\subsection{必要条件、可见条件与可判别证据}
+\paragraph{产生额外相干光束的必要条件}
+外延层必须有两个可返回光束的界面，并且入射及出射透射通道不为零。
+对所考虑偏振，需要 $t_{01}t_{10}r_{12}\ne0$；若要出现第二次及更多层内往返，
+还需 $r_{10}r_{12}\ne0$。在有效检测通道中，至少三条相关出射路径的振幅非零，
+相应互相干项未被时间、空间或偏振平均消除。
+以第 $m$ 条光束电场为 $E_m$，一般检测强度包含
+\begin{equation}
+ I=\sum_m\langle|E_m|^2\rangle+
+ 2\operatorname{Re}\sum_{m<n}\langle E_mE_n^*\rangle.
+ \label{eq:coherence-cross-terms}
+\end{equation}
+因此，存在多次几何反射本身并不等同于观测到了多光束干涉。
+两条光束有频谱重合、偏振投影不正交、在探测孔径内重叠且互相干度非零，才可贡献稳定交叉项。
+这里的相干条件是连续的可见度条件，并不存在适用于所有仪器的固定反射率阈值\cite{BornWolf1999}。
+
+\paragraph{强度足以观测的条件}
+定义往返振幅保持因子
+\begin{equation}
+ \eta_{\mathrm{rt}}=|r_{10}r_{12}|\,
+ \exp[-4\pi\sigma d_c\operatorname{Im}w_1].
+ \label{eq:roundtrip-strength}
+\end{equation}
+当 $\eta_{\mathrm{rt}}$ 很小时，第三束及后续光束虽在数学上存在，却可能低于噪声。
+若 $u=t_{01}t_{10}r_{12}z$，忽略高阶往返造成的振幅误差满足
+\begin{equation}
+ |r^{(\infty)}-r^{(2)}|
+ =\left|\frac{u\rho}{1-\rho}\right|
+ \leq\frac{|u|\eta_{\mathrm{rt}}}{1-\eta_{\mathrm{rt}}}.
+ \label{eq:two-beam-tail-bound}
+\end{equation}
+相应反射率误差不超过 $2|r^{(2)}|\,|\Delta r|+|\Delta r|^2$。
+只有当这一变化可被仪器分辨、且在多个条纹上稳定存在时，才有理由用更复杂模型替换两束近似。
+界面平行度、厚度均匀性、光斑重叠和角度发散决定平均后是否仍保留这些结构。
+
+\paragraph{光谱分辨率与宽带光源}
+红外光源覆盖宽波段不等于所有波数被无分辨地求和。
+对于分辨后的一个光谱通道，设仪器线形为 $h_{\Delta\sigma}$，则
+\begin{equation}
+ R_{\mathrm{obs}}(\sigma)=\int h_{\Delta\sigma}(\sigma-u)
+ R_{\mathrm{true}}(u)\,\mathrm{d}u.
+ \label{eq:instrument-convolution}
+\end{equation}
+在局部线性相位和矩形通道的示意近似下，第 $m$ 次相位谐波的振幅乘以
+$\operatorname{sinc}(m\Phi'\Delta\sigma/2)$，其中 $\operatorname{sinc}x=\sin x/x$。
+故保留高阶结构需要 $m|\Phi'|\Delta\sigma\ll2\pi$，
+或以有效群延迟 $\tau_g=(2\pi c)^{-1}\Phi'$ 表述为 $m|\tau_g|\Delta f\ll1$。
+这只是局部可见度尺度；实际仪器线形应由分辨率和加窗方式确定。
+电子表格的采样间距也不能被直接当成仪器光谱分辨率。
+题目未给出光源相干函数、光斑和仪器线形，因而不能声称仅凭附件已经逐项验证了全部物理条件。
+
+\paragraph{数据中的可判别证据}
+谱峰变尖、峰谷不对称，以及在色散坐标中出现稳定的二次、三次谐波，
+均可提供支持，但也可能受背景、谱线叠加和窗口泄漏影响。
+谐波分析需在相同预处理、波段和窗函数下比较，且不能把零填充增加的频谱网格密度当成额外分辨能力\cite{Harris1978}。
+本文将两束与多束模型放在同一组原始数据上进行拟合，限制背景自由度，并结合残差、
+连续波段验证及跨入射角稳定性判断改进是否具有物理意义。
+若使用 $\mathrm{BIC}=N\log(\mathrm{RSS}/N)+k\log N$，其形式源自模型维数惩罚\cite{Schwarz1978}；
+但密集光谱残差通常相关，不能将采用名义点数的 BIC 差值当成严格显著性概率。
+模型优选在此表示“现有候选模型中得到更充分支持”，不表示对所有可能机制作唯一证明。
+
+\subsection{多光束对厚度估计的具体影响}
+在透明、参数恒定的单层模型中，令 $a=r_{01}$、$b=r_{12}$ 为实数，
+$\psi=4\pi d_c\sigma q_\theta$，则
+\begin{equation}
+ R(\psi)=\frac{a^2+b^2+2ab\cos\psi}
+ {1+a^2b^2+2ab\cos\psi}.
+ \label{eq:airy-real}
+\end{equation}
+它关于 $C=\cos\psi$ 的导数为
+\begin{equation}
+ \frac{\mathrm{d}R}{\mathrm{d}C}
+ =\frac{2ab(1-a^2)(1-b^2)}{(1+a^2b^2+2abC)^2}.
+ \label{eq:airy-monotonic}
+\end{equation}
+只要界面既非零反射也非完全反射，该导数不改变符号，因此同类极值仍然相隔 $2\pi$。
+\textbf{理想多光束干涉改变条纹线形和谐波含量，却不必改变同类条纹的相位周期。}
+由此可见，“存在多光束”不能直接推出“峰距厚度必然偏大或偏小”。
+
+实际偏差主要经由三个途径产生：一是色散及复反射相位改变相位梯度；
+二是背景、吸收和仪器卷积改变原始谱峰位置；三是把非正弦 Airy 线形强制拟合为正弦时，
+有限波段内相位、背景与振幅相互补偿，使厚度发生模型依赖的偏移。
+窄谱峰在足够分辨率和信噪比下可提高相位定位信息量，但若被欠采样或过度平滑，反而可能降低稳定性。
+因此，对有多光束证据支持的样品，应比较多束模型重估的厚度与两束估计。
+碳化硅则先进行嵌套线形检验；若新增高阶项在验证数据上没有稳定收益，保留两束主模型，
+并将两类估计之差作为模型敏感性，而不能凭拟合自由度增加就宣称已经纠正真实误差。
+
+\subsection{碳化硅的嵌套有效 Airy 线形}
+为了在不反演未知掺杂参数的前提下检验弱高阶效应，定义
+\begin{equation}
+ H(\Phi;\xi)=\frac{\cos\Phi-\xi}{1-2\xi\cos\Phi+\xi^2}
+ =\sum_{m=1}^{\infty}\xi^{m-1}\cos(m\Phi),\qquad |\xi|<1.
+ \label{eq:effective-airy-kernel}
+\end{equation}
+恒定实系数的 Airy 反射率可通过背景和振幅重参数化写成这一核的仿射形式。
+取 $\xi=0$ 时严格退化为 $H=\cos\Phi$，因此可以在相同色散、波段和背景复杂度下进行嵌套比较。
+参数 $\xi$ 控制有效谐波比例及峰谷线形；在本题未知界面光学常数时，
+不将它唯一解释为实测的 Fresnel 往返乘积。
+该检验保留模型的可比性，也避免把尚无独立约束的折射率、消光系数和掺杂浓度一并拟合。
+
+\subsection{用于硅光谱的有效复介电模型}
+针对衬底与外延层掺杂不同的机制，用固定的硅参照色散描述外延层实部，
+并以 Drude 型项描述衬底相对于参照的有效响应：
+\begin{equation}
+ \epsilon_1(\sigma)=n_{\mathrm{Si}}^2(\sigma),\qquad
+ \epsilon_2(\sigma)=n_{\mathrm{Si}}^2(\sigma)
+ -\frac{\Omega_p^2}{\sigma(\sigma+\mathrm{i}\Gamma)}.
+ \label{eq:silicon-drude-effective}
+\end{equation}
+式中 $\Omega_p$、$\Gamma$ 与 $\sigma$ 使用同一波数单位；在物理角频率形式中应分别乘 $2\pi c$。
+只有另外给出有效质量、载流子类型等信息，才能由等离子体参数换算载流子浓度。
+当前资料不足以将拟合参数视为独立的掺杂测量。
+
+为容纳波段内未分离的额外衰减，允许将式\eqref{eq:roundtrip-propagation}中的传播因子改为
+\begin{equation}
+ z_{\mathrm{eff}}(\sigma)=\exp(2\mathrm{i}\delta)
+ \exp\!\left[-g\left(\frac{\sigma}{1000}\right)^2\right],\qquad g\geq0.
+ \label{eq:effective-roundtrip-envelope}
+\end{equation}
+再对每个入射角设置幅值标定和偏置：
+\begin{equation}
+ \widehat R_\theta^{(\%)}(\sigma)=a_\theta+100b_\theta
+ R_{\mathrm{Airy}}(\sigma;d,\Omega_p,\Gamma,g).
+ \label{eq:silicon-observation-model}
+\end{equation}
+式中$R_{\mathrm{Airy}}$按式\eqref{eq:unpolarized-airy}为无量纲反射率，乘100后转为反射率百分数。这里 $g$ 只是有效往返包络参数，$a_\theta,b_\theta$ 只是观测标定参数。
+厚度不均匀、角度分布、散射和吸收对衰减的贡献无法从这一表达式唯一分解。
+尤其式\eqref{eq:effective-roundtrip-envelope}是低维有效近似，并不与
+式\eqref{eq:instrument-convolution}的严格卷积普遍等价。
+
+两角联合优化共享的材料和厚度参数，同时对照分角拟合以及不同连续窗口的结果。
+拟合参数始终满足被动介质和非负衰减约束。残差重采样若用于区间估计，应保留连续谱点的相关结构\cite{Kunsch1989}。
+在固定色散下得到的数值区间是条件区间，跨角分歧与替代光学模型造成的厚度变化必须同时报告。
+上述策略的目标是用有限资料建立可核查的厚度估计，而非把额外参数误认为已经测得的材料性质。

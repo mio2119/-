@@ -1,0 +1,59 @@
+% !TeX program = xelatex
+% !TeX encoding = UTF-8
+\documentclass[withoutpreface,bwprint]{cumcmthesis}
+\usepackage[numbers,sort&compress]{natbib}
+\renewcommand{\bibfont}{\small}
+\setlength{\bibsep}{0.4em}
+\AtBeginEnvironment{thebibliography}{\raggedright}
+\usepackage{siunitx}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcommand{\wn}{\sigma}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\um}{\,\mu\mathrm{m}}
+\newcommand{\cmiv}{\,\mathrm{cm}^{-1}}
+\newcommand{\figref}[1]{图\ref{#1}}
+\newcommand{\tabref}[1]{表\ref{#1}}
+\newcommand{\paperfigure}[4]{%
+  \begin{figure}[htbp]\centering
+    \includegraphics[width=#3\textwidth,height=8.5cm,keepaspectratio]{#1}
+    \caption{#2}\label{#4}
+  \end{figure}}
+\hypersetup{hidelinks,pdfborder={0 0 0},pdfauthor={},
+  pdftitle={基于色散校正与多光束比较的外延层厚度反演},pdfsubject={},pdfkeywords={}}
+\setlength{\emergencystretch}{2em}
+\captionsetup{font=small,labelsep=quad}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+\renewcommand{\thetable}{\arabic{section}-\arabic{table}}
+\title{基于色散校正与多光束比较的外延层厚度反演}
+\author{}
+\date{}
+
+\begin{document}
+\pagenumbering{gobble}
+\maketitle
+\input{sections/abstract}
+\pagenumbering{arabic}
+\input{sections/introduction}
+\input{sections/data}
+\input{sections/theory_single}
+\input{sections/sic_results}
+\input{sections/theory_multi}
+\input{sections/silicon_results}
+\input{sections/validation}
+\input{sections/conclusion}
+\bibliographystyle{gbt7714-numerical}
+\bibliography{references}
+\begin{appendices}
+\renewcommand{\theequation}{\Alph{section}.\arabic{equation}}
+\renewcommand{\thefigure}{\Alph{section}-\arabic{figure}}
+\renewcommand{\thetable}{\Alph{section}-\arabic{table}}
+\input{sections/appendix}
+\end{appendices}
+\end{document}
