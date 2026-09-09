@@ -1,0 +1,29 @@
+# 当前仓库只管理 B 题项目；保留其他本地材料但不上传。
+/*
+!/.gitignore
+!/README.md
+!/B题论文/
+!/AGENTS.md
+!/requirements.txt
+
+# 临时运行环境与缓存
+**/scratch/
+**/__pycache__/
+**/.venv/
+**/node_modules/
+**/*.pyc
+
+# 本轮只维护 LaTeX 源码，不生成或提交 Word、PDF 和编译产物
+**/*.pdf
+**/*.docx
+**/*.aux
+**/*.bbl
+**/*.blg
+**/*.fdb_latexmk
+**/*.fls
+**/*.log
+**/*.out
+**/*.synctex.gz
+**/*.toc
+**/*.xdv
+**/*.zip
