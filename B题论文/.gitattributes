@@ -1,4 +1,0 @@
-# Matplotlib emits whitespace inside SVG paths; it is part of generated output.
-figures/*.svg -whitespace linguist-generated=true
-tables/*.tex linguist-generated=true
-results/* linguist-generated=true
